@@ -1,2 +1,2 @@
 # python-web-scraper
- Simple python web scraper to get python job postins from Indeed.com and StackOverflow.
+ Simple python web scraper to get python job postings from Indeed.com and StackOverflow.
