@@ -21,11 +21,6 @@ def extract_job(html):
     company = company.get_text(strip=True)
     location = location.get_text(strip=True)
     job_id = html["data-jobid"]
-
-    # print(title, company, location)
-
-    # print(company.get_text(strip=True), location.get_text(strip=True))
-
     return {"title" : title, "company": company, "location" : location, "apply_link" : f"https://stackoverflow.com/jobs/{job_id}"}
 
 def extract_jobs(last_page):
@@ -34,22 +29,17 @@ def extract_jobs(last_page):
     for page in range(last_page):
         print(f"Scrapping StackOverflow - Page: {page}")
         result = requests.get(f"{URL}&pg={page+1}")
-        # print(result.status_code)
-
         soup = BeautifulSoup(result.text, "html.parser")
-
         results = soup.find_all("div", {"class":"-job"})
 
         for result in results:
-            # print(result["data-jobid"])
+
             job = extract_job(result)
-            # print(job)
             jobs.append(job)
 
     return jobs
 
 def get_jobs():
     last_page = get_last_page()
-    # print(last_page)
     jobs = extract_jobs(last_page)
     return jobs

@@ -8,5 +8,5 @@ def save_to_file(jobs):
     
     for job in jobs:
         writer.writerow(list(job.values()))
-    # print(file)
+    
     return
